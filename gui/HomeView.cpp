@@ -7,7 +7,7 @@
 #include <gtk/gtk.h>
 #include "HomeView.h"
 #include "../event/Timer.h"
-
+#include "settings.h"
 //#define DEBUG_GRID 1
 
 /**
@@ -55,6 +55,13 @@ HomeView::HomeView(GtkWindow *window) : BaseView(window) {
 
 HomeView::~HomeView() {
 	delete this->unsplash;
+}
+/**
+* Callback function for settings button
+*/
+void clickedSettings(GtkWidget *widget, gpointer data) {
+  open_settings_window();
+  g_print("Settings Opened\n");
 }
 
 /**
@@ -159,6 +166,16 @@ void HomeView::drawWidgets() {
 	gtk_misc_set_alignment(GTK_MISC(lblGreeting), 1.0, 0.0);
 	gtk_grid_attach(this->grid, lblGreeting, 2, 0, 1, 1);
 
+	// create the settings button
+	GtkWidget* btnSettings = gtk_button_new_with_label("settings");
+	// this->btnSettings = (GtkLabel*) lblGreeting;
+	// addClass(, "lblGreeting");
+	g_signal_connect(G_OBJECT(btnSettings), "clicked", 
+    G_CALLBACK(clickedSettings), NULL);
+	gtk_misc_set_alignment(GTK_MISC(btnSettings), 0.5, 0.5);
+	gtk_grid_attach(this->grid, btnSettings, 0, 2, 1, 1);
+
+
 	// create weather's box container
 	GtkWidget* boxWeather = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_grid_attach(this->grid, boxWeather, 2, 3, 1, 1);
@@ -250,3 +267,4 @@ void HomeView::setFullscreen(bool fullscreen) {
 		gtk_window_unfullscreen(this->window);
 	}
 }
+
