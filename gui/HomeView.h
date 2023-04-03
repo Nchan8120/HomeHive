@@ -15,7 +15,6 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <AudioToolbox/AudioToolbox.h>
 #include <SDL2/SDL.h>
 
 
