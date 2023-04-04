@@ -21,13 +21,13 @@ your favourite tunes whenever you wake up.
 - [x] Dynamic backgrounds (via Unsplash)
 - [x] Current date & time
 - [x] User greeting message
-- [ ] Settings menu
-- [ ] Alarm clock
-- [ ] Weather forecast
+- [x] Settings menu
+- [x] Alarm clock
+- [x] Weather forecast
+- [x] Latest news
 
 ### Planned Features
 - [ ] Calendar integration
-- [ ] Latest news
 - [ ] Spotify integration
 - [ ] Text-to-speech (maybe?)
 
@@ -41,6 +41,7 @@ Linux 5.4+ with a desktop environment that supports GTK 3.x (eg: KDE, Gnome)
 CMake 3.10+ with C++11 support
 libcurl (with dev headers)
 Stable internet connection
+LibSDL2 (with dev headers for sound)
 ```
 
 You can check if these are installed and their versions with these commands:
@@ -53,6 +54,12 @@ pkg-config --modversion gtk+-3.0 libcurl glib-2.0
 
 #get cmake version
 cmake --version
+```
+
+You might need to install some of these dependencies, depending on your distro, an example
+(tested on my RPI 2b):
+```bash
+sudo apt install cmake libcurl4-openssl-dev libgtk-3-dev libglib2.0-dev libsdl2-dev
 ```
 
 If those seem reasonably within the requirements and are installed (which it probably should be if you're
@@ -113,7 +120,7 @@ make -C cmake-build-debug -j 4
 ```
 
 ----
-### Install Scheme files
+### Build & Install Scheme files
 to compile and install scheme files these bash commands can help
 ```bash
 glib-compile-schemas .
